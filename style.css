@@ -40,6 +40,7 @@
 html, body {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden !important; /* Non-scrollable requirement */
     position: fixed;
     top: 0;
@@ -179,6 +180,7 @@ html, body {
 .slides-viewport {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -193,6 +195,7 @@ html, body {
     left: 0;
     width: 100vw;
     height: calc(100vh - 70px);
+    height: calc(100dvh - 70px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,6 +220,8 @@ html, body {
     width: 100%;
     max-width: 680px;
     max-height: calc(100vh - 90px);
+    max-height: calc(100dvh - 90px);
+    height: 100%;
     padding: 24px 28px;
     box-shadow: var(--shadow-card);
     display: flex;
@@ -245,6 +250,8 @@ html, body {
     margin: 6px 0;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
 }
 
@@ -268,7 +275,9 @@ html, body {
     padding: 18px 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
     overflow-y: auto;
-    max-height: calc(100vh - 280px);
+    flex: 1;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 .letter-paper::-webkit-scrollbar {
@@ -684,17 +693,173 @@ html, body {
 .peek-text { font-size: 0.98rem; font-weight: 500; margin-bottom: 6px; }
 .peek-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 18px; }
 
-/* Responsive adjustments */
-@media (max-height: 650px) {
-    .fullscreen-photo-frame { height: 38vh; }
-    .main-title { font-size: 1.6rem; }
-    .gate-message { font-size: 1.2rem; }
-    .slide-card { padding: 16px 20px; }
+/* Comprehensive Responsive Mobile Adjustments */
+@media (max-width: 640px) {
+    .top-nav {
+        top: 8px;
+        height: 44px;
+        width: calc(100% - 16px);
+        padding: 0 10px;
+    }
+    
+    .nav-brand {
+        font-size: 0.8rem;
+    }
+
+    .brand-text {
+        font-size: 0.78rem;
+    }
+    
+    .story-progress-container {
+        top: 56px;
+        width: calc(100% - 16px);
+        padding: 4px 10px;
+    }
+
+    .slides-viewport {
+        padding: 56px 8px 8px 8px;
+    }
+
+    .fullscreen-slide {
+        top: 54px;
+        height: calc(100vh - 54px);
+        height: calc(100dvh - 54px);
+        padding: 4px;
+    }
+
+    .slide-card {
+        padding: 14px 14px 12px 14px;
+        border-radius: 18px;
+        max-height: calc(100vh - 62px);
+        max-height: calc(100dvh - 62px);
+    }
+
+    .card-badge {
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        margin-bottom: 4px;
+        align-self: flex-start;
+    }
+
+    .main-title {
+        font-size: clamp(1.2rem, 5.2vw, 1.55rem);
+        line-height: 1.25;
+        margin-bottom: 4px;
+    }
+
+    .subtitle {
+        font-size: 0.78rem;
+        margin-bottom: 6px;
+    }
+
+    .letter-paper {
+        padding: 12px 12px;
+        border-radius: 12px;
+    }
+
+    .letter-body {
+        font-size: clamp(0.85rem, 3.8vw, 0.92rem);
+        line-height: 1.55;
+        margin-bottom: 10px;
+    }
+
+    .highlight-line {
+        padding: 6px 10px;
+        margin-bottom: 8px;
+    }
+
+    .letter-closing {
+        margin-top: 8px;
+    }
+
+    .signature {
+        font-size: 1.15rem;
+    }
+
+    .slide-footer-nav {
+        margin-top: 8px;
+        flex-shrink: 0;
+    }
+
+    .pill-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        min-height: 40px;
+    }
+
+    .next-slide-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .fullscreen-photo-frame {
+        height: 38vh;
+        max-height: 320px;
+        min-height: 200px;
+        border-radius: 14px;
+    }
+
+    .caption-text {
+        font-size: 1.15rem;
+    }
+
+    .dots-wrapper {
+        margin: 4px 0 6px 0;
+    }
+
+    .gate-illustration {
+        width: 76px;
+        height: 76px;
+        margin-bottom: 6px;
+    }
+
+    .gate-arch {
+        width: 68px;
+        height: 74px;
+    }
+
+    .gate-message {
+        font-size: 1.2rem;
+        line-height: 1.3;
+        margin-bottom: 4px;
+    }
+
+    .gate-subtext {
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+    }
+
+    .countdown-card {
+        padding: 8px 12px;
+        margin-bottom: 12px;
+    }
+
+    .time-block span {
+        font-size: 1.15rem;
+    }
+
+    .nav-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+    .prev-arrow { left: 6px; }
+    .next-arrow { right: 6px; }
 }
 
-@media (max-width: 600px) {
-    .top-nav { padding: 0 10px; }
-    .brand-text { font-size: 0.8rem; }
-    .pill-btn { padding: 5px 10px; font-size: 0.75rem; }
-    .slide-card { padding: 18px 16px; }
+@media (max-height: 680px) and (max-width: 600px) {
+    .main-title {
+        font-size: 1.15rem;
+    }
+    .letter-body {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        margin-bottom: 6px;
+    }
+    .slide-card {
+        padding: 12px 10px 10px 10px;
+    }
+    .letter-paper {
+        padding: 10px;
+    }
 }

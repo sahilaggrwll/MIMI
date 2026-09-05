@@ -150,6 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', prevSlide);
     nextBtn.addEventListener('click', nextSlide);
 
+    // Touch Swipe Support for Mobile Photo Gallery
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const photoFrame = document.querySelector('.fullscreen-photo-frame');
+    if (photoFrame) {
+        photoFrame.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        photoFrame.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 40) {
+                nextSlide();
+            } else if (touchEndX > touchStartX + 40) {
+                prevSlide();
+            }
+        }, { passive: true });
+    }
+
     // Keyboard Arrow Controls
     document.addEventListener('keydown', (e) => {
         if (slides.gallery.classList.contains('active')) {
