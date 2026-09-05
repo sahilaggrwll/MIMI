@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Meri Jaan! ✨</title>
+    <meta name="description"
+        content="A minimalist, cute fullscreen birthday memory journey created especially for you.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="fullscreen-body">
+    <!-- Background Canvas for Soft Floating Stars -->
+    <canvas id="sparkleCanvas"></canvas>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="brand-sparkle">✦</span>
+            <span class="brand-text">For the Birthday Girl</span>
+        </div>
+        <div class="nav-actions">
+            <button id="autoPlayBtn" class="pill-btn play-btn primary-pill">
+                <span class="btn-icon">▶</span>
+                <span class="btn-text">Play Story (25s)</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Story Progress Bar (Header) -->
+    <div class="story-progress-container" id="progressContainer">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+        <div class="progress-info">
+            <span id="progressStepText">Step 1: Birthday Letter</span>
+            <span id="progressTimeText">0s / 25s</span>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN SLIDES CONTAINER (NO PAGE SCROLL) -->
+    <main class="slides-viewport">
+
+        <!-- SCREEN 1: THE OPENING LETTER -->
+        <section id="slide-letter" class="fullscreen-slide active">
+            <div class="slide-card letter-card">
+                <div class="card-badge">A Birthday Note 💌</div>
+
+                <div class="letter-content-box">
+                    <h1 class="main-title">Happy Birthday, Meri Jaan! ✨</h1>
+                    <p class="subtitle"></p>
+
+                    <div class="letter-paper">
+                        <p class="letter-body">
+                            Aaj tera special day hai, and I just wanted to take a moment to tell you exactly what you
+                            mean to me. You are honestly the most amazing and talented person I know. I know you tend to
+                            overthink and doubt yourself sometimes, always stressing about what comes next, but trust
+                            me,<strong>tu sab kuch figure out kar legi</strong>. You always do. You have this incredible
+                            drive, and I believe in you even on the days you forget to believe in yourself.
+                        </p>
+                        <p class="letter-body">
+                            And can we just talk about how gorgeous you are? Tu chahe maane ya na maane, you are without
+                            a doubt the most beautiful girl in the world to me. Just seeing your smile is enough to make
+                            my entire day better.
+                        </p>
+                        <p class="letter-body">
+                            I know we have our share of silly arguments, but <em>sach kahun toh</em>, every single fight
+                            we have is only making our bond stronger. It just shows that we care enough to work through
+                            things together. Har jhagde ke baad, I only realize how much I truly can't live without you.
+                        </p>
+                        <p class="letter-body highlight-line">
+                            I love you so much, with all my heart. Tumhara yeh saal tumhari hi tarah absolutely perfect
+                            ho.
+                        </p>
+                        <div class="letter-closing">
+                            <p class="signature">Happy Birthday, beautiful! Let's celebrate you today. ♡</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-nav">
+                    <button class="pill-btn primary-pill next-slide-btn" id="startStoryBtn">
+                        <span>View Photos Story</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: PHOTO MEMORY GALLERY -->
+        <section id="slide-gallery" class="fullscreen-slide">
+            <div class="slide-card gallery-card">
+                <div class="gallery-header">
+                    <span class="card-badge">Photo Memories 🎞️</span>
+                    <span class="photo-counter-tag" id="photoBadge">Photo 1 of 20</span>
+                </div>
+
+                <!-- Main Photo Frame -->
+                <div class="fullscreen-photo-frame">
+                    <img id="bgBlurPhoto" class="photo-bg-blur" src="photos/photo1.jpg" alt="" aria-hidden="true">
+                    <img id="activePhoto" src="photos/photo1.jpg" alt="Birthday Memory" class="photo-img fade-in">
+
+                    <button class="nav-arrow prev-arrow" id="prevBtn" title="Previous photo">‹</button>
+                    <button class="nav-arrow next-arrow" id="nextBtn" title="Next photo">›</button>
+                </div>
+
+                <!-- Caption Bar -->
+                <div class="caption-container">
+                    <p id="photoCaption" class="caption-text">"Every memory with you brings light and warmth."</p>
+                </div>
+
+                <!-- Dots Navigator -->
+                <div class="dots-wrapper" id="dotsWrapper"></div>
+
+                <div class="slide-footer-nav split-nav">
+                    <button class="pill-btn" id="backToLetterBtn">← Letter</button>
+                    <button class="text-link-btn" id="viewGridBtn">📷 Grid View</button>
+                    <button class="pill-btn primary-pill" id="goToFinaleBtn">Midnight Gate →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: MIDNIGHT GATE GIFT FINALE -->
+        <section id="slide-finale" class="fullscreen-slide">
+            <div class="slide-card finale-card">
+                <div class="gate-illustration">
+                    <div class="gate-arch">
+                        <div class="gate-doors" id="gateDoors">
+                            <div class="door door-left"></div>
+                            <div class="door door-right"></div>
+                            <div class="gate-lock" id="gateLock">🔑</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="finale-text-box">
+                    <span class="sparkle-badge">✦ Midnight Surprise ✦</span>
+
+                    <!-- REQUIRED EXACT USER MESSAGE -->
+                    <h2 class="gate-message" id="gateMessageText">
+                        Please open the gate at 12:00 AM, there's a gift for you. 🎁✨
+                    </h2>
+
+                    <p class="gate-subtext">
+                        Set your clock, keep an eye on the door, and get ready for a special surprise waiting just
+                        outside.
+                    </p>
+
+                    <!-- Countdown to 12:00 AM -->
+                    <div class="countdown-card">
+                        <div class="countdown-label">Time remaining until 12:00 AM:</div>
+                        <div class="countdown-timer" id="countdownTimer">
+                            <div class="time-block"><span id="cdHours">00</span><small>Hours</small></div>
+                            <div class="time-colon">:</div>
+                            <div class="time-block"><span id="cdMins">00</span><small>Mins</small></div>
+                            <div class="time-colon">:</div>
+                            <div class="time-block"><span id="cdSecs">00</span><small>Secs</small></div>
+                        </div>
+                    </div>
+
+                    <div class="finale-actions">
+                        <button id="openGateBtn" class="pill-btn primary-pill open-gate-btn">
+                            <span class="btn-icon">🚪</span>
+                            <span class="btn-text">Tap to Peek at the Gate</span>
+                        </button>
+                        <button class="pill-btn" id="backToGalleryBtn">← Photos</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for Photo Grid View -->
+    <div class="photo-grid-modal" id="photoGridModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>All Photo Memories</h3>
+                <button class="close-modal-btn" id="closeGridBtn">✕</button>
+            </div>
+            <div class="grid-container" id="gridContainer"></div>
+        </div>
+    </div>
+
+    <!-- Modal for Gate Peek Reveal -->
+    <div class="peek-modal" id="peekModal">
+        <div class="peek-modal-box">
+            <div class="peek-icon">🎁✨</div>
+            <h3>Midnight Gift Awaits!</h3>
+            <p class="peek-text">
+                "Please open the gate at 12:00 AM, there's a gift for you."
+            </p>
+            <p class="peek-note">
+                (Step outside right when the clock strikes 12:00 AM!)
+            </p>
+            <button class="pill-btn primary-pill" id="closePeekBtn">Got it! I'll be waiting 🕒</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
